@@ -31,6 +31,7 @@ if "-d" in sys.argv:
 logger.addHandler(console_handler)
 # Log verbose messages to a file, dpcb.log.
 file_handler = logging.FileHandler("dpcb.log", encoding="utf8")
+file_handler.setLevel(logging.INFO)
 logger.addHandler(file_handler)
 
 # Output a test message to the logger.
@@ -42,7 +43,11 @@ for comment in reddit.subreddit("all").stream.comments():
     # Log the comment ID.
     logger.debug(f"Comment found: {comment.permalink}")
     # Convert the comment to a CommentTuple so we can use it in the duplicate detector.
-    comment_tuple = CommentTuple(id=comment.id, parent_id=comment.parent_id, body=comment.body)
+    comment_tuple = CommentTuple(
+        id=comment.id,
+        parent_id=comment.parent_id,
+        body=comment.body,
+        author_id=comment.author.id)
     # Add the comment tuple to the duplicate detector and check if it's a duplicate.
     if original_comment_tuple := duplicate_comment_detector.add_comment(comment_tuple):
         # Get a comment instance of the original comment.

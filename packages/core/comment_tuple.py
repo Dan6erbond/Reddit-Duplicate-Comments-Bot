@@ -1,3 +1,3 @@
 from collections import namedtuple
 
-CommentTuple = namedtuple("CommentTuple", ["id", "parent_id", "body"])
+CommentTuple = namedtuple("CommentTuple", ["id", "parent_id", "body", "author_id"])

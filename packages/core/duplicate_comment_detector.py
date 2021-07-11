@@ -16,6 +16,6 @@ class DuplicateCommentDetector:
     def add_comment(self, comment: CommentTuple) -> Optional[CommentTuple]:
         for c in self.comment_list:
             # Check if comment was already stored in list
-            if c.parent_id == comment.parent_id and c.body == comment.body:
+            if c.parent_id == comment.parent_id and c.body == comment.body and c.author_id == comment.author_id:
                 return c
         self.comment_list.append(comment)
