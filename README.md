@@ -9,6 +9,8 @@
 
 This bot was built by [Dan6erbond](https://github.com/Dan6erbond), [u/Dan6erbond](https://reddit.com/u/Dan6erbond) on Reddit.
 
+GitHub Copilot was used to generate some of the code as well as tests. An overview of the suggestions and its output can be seen here.
+
 # License
 
 This software is licensed under the [GNU General Public License v3.0](https://github.com/Dan6erbond/Reddit-Duplicate-Comments-Bot/blob/master/LICENSE).
