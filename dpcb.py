@@ -9,7 +9,7 @@ from packages.core import CommentTuple, DuplicateCommentDetector
 logger = logging.getLogger("Duplicate Comments Bot")
 logger.setLevel(logging.DEBUG)
 
-message = """Hey there! It looks like your comment is a duplicate. This can happen on occassion when the Reddit service or the app makes a mistake.
+message = """Hey there! It looks like your comment is a duplicate. This can happen on occasion when the Reddit service or the app makes a mistake.
 
 [Original comment]({original_comment.permalink})
 
