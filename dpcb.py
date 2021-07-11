@@ -42,19 +42,23 @@ for comment in reddit.subreddit("all").stream.comments():
     comment: Comment
     # Log the comment ID.
     logger.debug(f"Comment found: {comment.permalink}")
-    # Convert the comment to a CommentTuple so we can use it in the duplicate detector.
-    comment_tuple = CommentTuple(
-        id=comment.id,
-        parent_id=comment.parent_id,
-        body=comment.body,
-        author_id=comment.author.id)
+    try:
+        # Convert the comment to a CommentTuple so we can use it in the duplicate detector.
+        comment_tuple = CommentTuple(
+            id=comment.id,
+            parent_id=comment.parent_id,
+            body=comment.body,
+            author_id=comment.author.id)
+    except Exception as e:
+        # Handle the error.
+        logger.error(f"Error reading comment data: {comment.permalink}")
     # Add the comment tuple to the duplicate detector and check if it's a duplicate.
     if original_comment_tuple := duplicate_comment_detector.add_comment(comment_tuple):
-        # Get a comment instance of the original comment.
-        original_comment = reddit.comment(id=original_comment_tuple.id)
-        # Log the duplicate comment as an info.
-        logger.info(f"Duplicate comment found: {original_comment.permalink}")
         try:
+            # Get a comment instance of the original comment.
+            original_comment = reddit.comment(id=original_comment_tuple.id)
+            # Log the duplicate comment as an info.
+            logger.info(f"Duplicate comment found: {original_comment.permalink}")
             # Respond to the comment with a message.
             comment.reply(message.format(original_comment=original_comment, comment=comment))
         except Exception as e:
