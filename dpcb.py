@@ -10,11 +10,11 @@ logger = logging.getLogger("Duplicate Comments Bot")
 logger.setLevel(logging.DEBUG)
 
 message = """Hey there! It looks like your comment is a duplicate. This can happen on occassion when the Reddit service or the app makes a mistake.
-            [Original comment]({original_comment.permalink})
+[Original comment]({original_comment.permalink})
 
-            [Duplicate comment]({comment.permalink})
+[Duplicate comment]({comment.permalink})
 
-            ^([View Source](https://github.com/Dan6erbond/DuplicateCommentsBot) | [Feedback to u/Dan6erbond](https://www.reddit.com/message/compose?to=Dan6erbond&subject=Feedback%20on%20Duplicate%20Comments%20Bot))"""
+^([View Source](https://github.com/Dan6erbond/DuplicateCommentsBot) | [Feedback to u/Dan6erbond](https://www.reddit.com/message/compose?to=Dan6erbond&subject=Feedback%20on%20Duplicate%20Comments%20Bot))"""
 
 reddit = praw.Reddit("dpcb", user_agent="Duplicate comment detector.")
 duplicate_comment_detector = DuplicateCommentDetector()
